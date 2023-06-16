@@ -1,9 +1,9 @@
 {
-    "name": "mstilkerich/carddavclient",
+    "name": "chucktrukk/carddavclient",
     "description": "CardDAV client library to discover and synchronize with CardDAV servers",
     "type": "library",
     "keywords": ["addressbook","carddav","contacts","owncloud","nextcloud"],
-    "homepage": "https://github.com/mstilkerich/carddavclient",
+    "homepage": "https://github.com/chucktrukk/carddavclient",
     "license": "MIT",
     "authors": [
         {
@@ -15,9 +15,9 @@
     ],
     "support": {
         "email": "ms@mike2k.de",
-        "issues": "https://github.com/mstilkerich/carddavclient/issues",
-        "source": "https://github.com/mstilkerich/carddavclient",
-        "docs": "https://github.com/mstilkerich/carddavclient"
+        "issues": "https://github.com/chucktrukk/carddavclient",
+        "source": "https://github.com/chucktrukk/carddavclient",
+        "docs": "https://github.com/chucktrukk/carddavclient"
     },
     "require": {
         "php": ">=7.1.0",
