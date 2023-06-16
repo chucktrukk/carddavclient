@@ -81,11 +81,11 @@ class SyncResult
                     try {
                         $obj["vcard"] = \Sabre\VObject\Reader::read($obj["vcf"]);
                     } catch (\Exception $e) {
-                        Config::$logger->error("Could not parse VCF for " . $obj["uri"], [ 'exception' => $e ]);
+                        //Config::$logger->error("Could not parse VCF for " . $obj["uri"], [ 'exception' => $e ]);
                         $ret = false;
                     }
                 } else {
-                    Config::$logger->warning("No VCF for address object " . $obj["uri"] . " available");
+                    //Config::$logger->warning("No VCF for address object " . $obj["uri"] . " available");
                     $ret = false;
                 }
             }

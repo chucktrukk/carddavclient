@@ -118,7 +118,7 @@ class HttpClientAdapterGuzzle extends HttpClientAdapter
             if ($this->checkCredentialsAvailable('basic')) {
                 $this->authScheme = 'basic';
             } else {
-                Config::$logger->warning("Ignoring option preemptive_basic_auth as username/password are not set");
+                //Config::$logger->warning("Ignoring option preemptive_basic_auth as username/password are not set");
             }
         }
 
@@ -167,7 +167,7 @@ class HttpClientAdapterGuzzle extends HttpClientAdapter
 
             // Workaround for Sabre/DAV vs. Curl incompatibility
             if ($doAuth && $this->checkSabreCurlIncompatibility($method, $response)) {
-                Config::$logger->debug("Attempting workaround for Sabre/Dav / curl incompatibility");
+                //Config::$logger->debug("Attempting workaround for Sabre/Dav / curl incompatibility");
                 $guzzleOptions = $this->prepareGuzzleOptions($options, $doAuth);
                 $response = $this->client->request($method, $uri, $guzzleOptions);
             }
@@ -176,7 +176,7 @@ class HttpClientAdapterGuzzle extends HttpClientAdapter
                 foreach ($this->getSupportedAuthSchemes($response) as $scheme) {
                     $this->authScheme = $scheme;
 
-                    Config::$logger->debug("Trying auth scheme $scheme");
+                    //Config::$logger->debug("Trying auth scheme $scheme");
 
                     $guzzleOptions = $this->prepareGuzzleOptions($options, $doAuth);
                     $response = $this->client->request($method, $uri, $guzzleOptions);
@@ -189,7 +189,7 @@ class HttpClientAdapterGuzzle extends HttpClientAdapter
                 }
 
                 if ($response->getStatusCode() >= 400) {
-                    Config::$logger->debug("None of the available auth schemes worked");
+                    //Config::$logger->debug("None of the available auth schemes worked");
                     $this->authScheme = null;
                 }
             }
@@ -303,7 +303,7 @@ class HttpClientAdapterGuzzle extends HttpClientAdapter
 
         $authScheme = $this->authScheme;
         if ($doAuth && isset($authScheme)) {
-            Config::$logger->debug("Using auth scheme $authScheme");
+            //Config::$logger->debug("Using auth scheme $authScheme");
 
             if (in_array($authScheme, self::GUZZLE_KNOWN_AUTHSCHEMES)) {
                 $guzzleOptions['auth'] = [

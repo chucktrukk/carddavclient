@@ -40,12 +40,12 @@ final class ConfigTest extends TestCase
         $l1 = $this->createStub(AbstractLogger::class);
         $l2 = $this->createStub(AbstractLogger::class);
         Config::init($l1, $l2);
-        $this->assertSame($l1, Config::$logger);
+        $this->assertSame($l1, //Config::$logger);
         $this->assertSame($l2, Config::$httplogger);
 
         // test init without logger params sets default null loggers
         Config::init();
-        $this->assertInstanceOf(NullLogger::class, Config::$logger);
+        $this->assertInstanceOf(NullLogger::class, //Config::$logger);
         $this->assertInstanceOf(NullLogger::class, Config::$httplogger);
     }
 

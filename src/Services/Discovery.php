@@ -63,7 +63,7 @@ class Discovery
     public function discoverAddressbooks(Account $account): array
     {
         $uri = $account->getDiscoveryUri();
-        Config::$logger->debug("Starting discovery with input $uri");
+        //Config::$logger->debug("Starting discovery with input $uri");
         if (!preg_match(';^(([^:]+)://)?(([^/:]+)(:([0-9]+))?)(/?.*)$;', $uri, $match)) {
             throw new \InvalidArgumentException("The account's discovery URI must contain a hostname (got: $uri)");
         }
@@ -115,7 +115,7 @@ class Discovery
             }
 
             foreach ($contextpaths as $contextpath) {
-                Config::$logger->debug("Try context path $contextpath");
+                //Config::$logger->debug("Try context path $contextpath");
                 // (3) Attempt a PROPFIND asking for the DAV:current-user-principal property
                 $principalUri = $account->findCurrentUserPrincipal($contextpath);
                 if (isset($principalUri)) {
@@ -137,7 +137,7 @@ class Discovery
                         // result of the discovery is an empty set.
                         return $addressbooks;
                     } catch (\Exception $e) {
-                        Config::$logger->info("Exception while querying addressbooks: " . $e->getMessage());
+                        //Config::$logger->info("Exception while querying addressbooks: " . $e->getMessage());
                     }
                 }
             }
@@ -192,7 +192,7 @@ class Discovery
                             "scheme" => $scheme,
                             "dnsrr"  => $rrname
                         ];
-                    Config::$logger->info("Found server per DNS SRV $rrname: {$dnsres['target']}: {$dnsres['port']}");
+                    //Config::$logger->info("Found server per DNS SRV $rrname: {$dnsres['target']}: {$dnsres['port']}");
                 }
             }
         }
@@ -241,7 +241,7 @@ class Discovery
                 foreach ($dnsresults as $dnsresult) {
                     if (preg_match('/^path=(.+)/', $dnsresult['txt'] ?? "", $match)) {
                         $contextpaths[] = $match[1];
-                        Config::$logger->info("Discovered context path $match[1] per DNS TXT record\n");
+                        //Config::$logger->info("Discovered context path $match[1] per DNS TXT record\n");
                     }
                 }
             }

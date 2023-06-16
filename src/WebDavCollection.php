@@ -82,7 +82,7 @@ class WebDavCollection extends WebDavResource
                 }
             }
         } catch (\Exception $e) {
-            Config::$logger->info("Exception while querying collection children: " . $e->getMessage());
+            //Config::$logger->info("Exception while querying collection children: " . $e->getMessage());
         }
 
         return $childObjs;

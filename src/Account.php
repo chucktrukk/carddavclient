@@ -232,10 +232,10 @@ class Account implements \JsonSerializable
             if (isset($result[0]["props"][XmlEN::CURUSRPRINC])) {
                 $princUrl = $result[0]["props"][XmlEN::CURUSRPRINC];
                 $princUrl = CardDavClient::concatUrl($result[0]["uri"], $princUrl);
-                Config::$logger->info("principal URL: $princUrl");
+                //Config::$logger->info("principal URL: $princUrl");
             }
         } catch (\Exception $e) {
-            Config::$logger->info("Exception while querying current-user-principal: " . $e->getMessage());
+            //Config::$logger->info("Exception while querying current-user-principal: " . $e->getMessage());
         }
 
         return $princUrl;
@@ -271,11 +271,11 @@ class Account implements \JsonSerializable
                 foreach ($hrefs as $href) {
                     $addressbookHomeUri = CardDavClient::concatUrl($result[0]["uri"], $href);
                     $addressbookHomeUris[] = $addressbookHomeUri;
-                    Config::$logger->info("addressbook home: $addressbookHomeUri");
+                    //Config::$logger->info("addressbook home: $addressbookHomeUri");
                 }
             }
         } catch (\Exception $e) {
-            Config::$logger->info("Exception while querying addressbook-home-set: " . $e->getMessage());
+            //Config::$logger->info("Exception while querying addressbook-home-set: " . $e->getMessage());
             return null;
         }
 

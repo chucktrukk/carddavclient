@@ -232,7 +232,7 @@ class AddressbookCollection extends WebDavCollection
         // Add UID if not present
         if (empty($vcard->select("UID"))) {
             $uid = UUIDUtil::getUUID();
-            Config::$logger->notice("Adding missing UID property to new VCard ($uid)");
+            //Config::$logger->notice("Adding missing UID property to new VCard ($uid)");
             $vcard->UID = $uid;
         } else {
             $uid = (string) $vcard->UID;
@@ -330,7 +330,7 @@ class AddressbookCollection extends WebDavCollection
 
                 foreach ($response->propstat as $propstat) {
                     if (stripos($propstat->status, " 200 ") !== false) {
-                        Config::$logger->debug("VCF for $respUri received via query");
+                        //Config::$logger->debug("VCF for $respUri received via query");
                         $vcf = $propstat->prop->props[XmlEN::ADDRDATA] ?? "";
                         $vcard = \Sabre\VObject\Reader::read($vcf);
                         if ($vcard instanceof VCard) {
@@ -339,7 +339,7 @@ class AddressbookCollection extends WebDavCollection
                                 "vcard" => $vcard
                             ];
                         } else {
-                            Config::$logger->error("sabre reader did not return a VCard object for $vcf\n");
+                            //Config::$logger->error("sabre reader did not return a VCard object for $vcf\n");
                         }
                     }
                 }
@@ -349,10 +349,10 @@ class AddressbookCollection extends WebDavCollection
                         if (stripos($response->status, " 507 ") !== false) {
                             // results truncated by server
                         } else {
-                            Config::$logger->debug(__METHOD__ . " Ignoring response on addressbook itself");
+                            //Config::$logger->debug(__METHOD__ . " Ignoring response on addressbook itself");
                         }
                     } else {
-                        Config::$logger->warning(__METHOD__ . " Unexpected respstatus element {$response->status}");
+                        //Config::$logger->warning(__METHOD__ . " Unexpected respstatus element {$response->status}");
                     }
                 }
             }
@@ -394,16 +394,16 @@ class AddressbookCollection extends WebDavCollection
             $msg = "Issue with provided VCard: " . $issue["message"];
 
             if ($issue["level"] <= 2) { // warning
-                Config::$logger->warning($msg);
+                //Config::$logger->warning($msg);
             } else { // error
-                Config::$logger->error($msg);
+                //Config::$logger->error($msg);
                 $errors .= "$msg\n";
                 $hasError = true;
             }
         }
 
         if ($hasError) {
-            Config::$logger->debug($vcard->serialize());
+            //Config::$logger->debug($vcard->serialize());
             throw new \InvalidArgumentException($errors);
         }
     }

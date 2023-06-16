@@ -198,7 +198,7 @@ class Prop implements \Sabre\Xml\XmlDeserializable
         }
 
         if ($err) {
-            Config::$logger->warning(
+            //Config::$logger->warning(
                 "Ignoring unexpected content for property $name: " . print_r($deserElem["value"], true)
             );
         }
